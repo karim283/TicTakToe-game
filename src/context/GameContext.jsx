@@ -10,7 +10,7 @@ const initialState = {
     playerO: 0,
     draw: 0,
   },
-  gameStatus: null, // Add game status to track the result
+  gameStatus: null,
 };
 
 const gameReducer = (state, action) => {
