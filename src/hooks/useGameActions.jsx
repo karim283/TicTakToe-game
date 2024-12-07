@@ -15,6 +15,9 @@ export function useGameActions() {
     dispatch({ type: "RESET_SCORES" });
   };
 
+  const setGameMode = (mode) => {
+    dispatch({ type: "SET_GAME_MODE", mode });
+  };
   const handleEndGame = () => {
     const state = useGame().state;
     const winner = state.winner;
@@ -27,5 +30,5 @@ export function useGameActions() {
     }
   };
 
-  return { handleClick, resetGame, resetScores, handleEndGame };
+  return { handleClick, resetGame, resetScores, setGameMode };
 }

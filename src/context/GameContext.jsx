@@ -84,7 +84,7 @@ const calculateWinner = (board) => {
   return board.every((cell) => cell) ? "Draw" : null;
 };
 
-export function GameProvider({ children }) {
+export const GameProvider = ({ children }) => {
   const [state, dispatch] = useReducer(gameReducer, initialState, (initial) => {
     const storedState = localStorage.getItem("ticTacToeState");
     return storedState ? JSON.parse(storedState) : initial;
@@ -99,8 +99,8 @@ export function GameProvider({ children }) {
       {children}
     </GameContext.Provider>
   );
-}
+};
 
-export function useGame() {
+export const useGame = () => {
   return useContext(GameContext);
-}
+};

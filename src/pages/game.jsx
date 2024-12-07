@@ -2,15 +2,20 @@ import logo from "../assets/images/tic.png";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
+import { useGameActions } from "../hooks/useGameActions";
 
 export function Game() {
   const { state, dispatch } = useGame();
   const navigate = useNavigate();
+  const { setGameMode } = useGameActions();
 
   const handleNewGame = () => {
+    navigate("/play2");
+  };
+  const handlePlayVsComputer = () => {
+    setGameMode("PLAYER_VS_COMPUTER");
     navigate("/play");
   };
-
   const handleResetScores = () => {
     dispatch({ type: "RESET_SCORES" });
   };
@@ -50,18 +55,27 @@ export function Game() {
             </div>
           </div>
 
-          <div className="flex justify-center items-center ">
+          <div className="flex justify-center items-center   ">
             <button
-              onClick={handleNewGame}
-              className="w-[270px] h-[45px] rounded-[10px] bg-[#F4F6F5] justify-center items-center text-center mt-10 text-[15px] font-bold "
+              onClick={handlePlayVsComputer}
+              className="w-[270px] h-[45px] rounded-[10px] bg-[#F4F6F5] bg-opacity-[29%] justify-center items-center text-center mt-7 text-[15px] text-white font-bold "
             >
-              New Game
+              play vs computer
             </button>
           </div>
-          <div className="flex justify-center items-center relative bottom-7 ">
+          <div className="flex justify-center items-center  ">
+            <button
+              onClick={handleNewGame}
+              className="w-[270px] h-[45px] rounded-[10px] bg-[#F4F6F5] justify-center items-center text-center text-[15px] font-bold mt-3 "
+            >
+              play 2 players
+            </button>
+          </div>
+
+          <div className="flex justify-center items-center ">
             <button
               onClick={handleResetScores}
-              className="w-[270px] h-[45px] rounded-[10px] bg-[#F4F6F5] bg-opacity-[29%] justify-center items-center text-center mt-10 text-[15px] text-white font-bold "
+              className="w-[270px] h-[45px] rounded-[10px] bg-[#ff3838] bg-opacity-[50%] justify-center items-center text-center mt-3 text-[15px] text-white font-bold "
             >
               Reset Score
             </button>
@@ -78,3 +92,4 @@ export function Game() {
     </div>
   );
 }
+export default Game;
